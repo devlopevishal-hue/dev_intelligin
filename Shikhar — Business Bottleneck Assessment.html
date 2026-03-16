@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://127.0.0.1:5500/Shikhar_Assessment_v2%20(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shikhar — Business Bottleneck Assessment</title>
+<link href="./Shikhar — Business Bottleneck Assessment_files/css2" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --gold:#C8933A; --gold2:#E8B86D; --goldLt:#FBF2E2;
+  --navy:#0F1E32; --navy2:#1A2E4A;
+  --ink:#1C1612; --cream:#FAF7F2; --warm:#F0E8D8;
+  --border:#DDD0BA; --muted:#7A6A56;
+  --rust:#8B3A0F; --rustLt:#FDF0E8;
+  --teal:#0E5454; --tealLt:#E6F3F3;
+  --grn:#1E5C1E; --grnLt:#E8F5E8;
+  --wa:#25D366;
+}
+body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; }
+
+/* TOPBAR */
+.topbar { background:var(--navy); position:sticky; top:0; z-index:200; border-bottom:3px solid var(--gold); }
+.topbar-inner { max-width:860px; margin:0 auto; padding:0 28px; height:58px; display:flex; align-items:center; justify-content:space-between; }
+.logo { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:700; color:var(--gold); letter-spacing:.12em; text-transform:uppercase; }
+.logo span { font-size:11px; font-weight:400; color:rgba(255,255,255,.3); margin-left:10px; letter-spacing:.06em; text-transform:none; font-family:'DM Sans',sans-serif; }
+.prog-wrap { display:flex; align-items:center; gap:12px; }
+.prog-txt { font-size:11px; color:rgba(255,255,255,.35); letter-spacing:.08em; }
+.prog-track { width:140px; height:3px; background:rgba(255,255,255,.08); }
+.prog-fill { height:100%; background:linear-gradient(90deg,var(--gold),var(--gold2)); transition:width .5s cubic-bezier(.4,0,.2,1); width:0%; }
+
+/* SCREENS */
+.screen { display:none; animation:fadeUp .4s ease; }
+.screen.active { display:block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+
+/* ── INTRO ── */
+.intro-wrap { max-width:700px; margin:0 auto; padding:56px 28px 80px; }
+.kicker { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); margin-bottom:24px; }
+.kicker::before { content:''; width:20px; height:1px; background:var(--gold); }
+.intro-h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,6vw,52px); font-weight:700; line-height:1.1; color:var(--navy); margin-bottom:18px; }
+.intro-h1 em { font-style:italic; color:var(--gold); }
+.intro-sub { font-size:15px; font-weight:300; color:var(--muted); line-height:1.75; margin-bottom:36px; max-width:520px; }
+
+.stats-strip { background:var(--navy); display:flex; margin-bottom:36px; }
+.stat-item { flex:1; padding:20px 16px; text-align:center; border-right:1px solid rgba(255,255,255,.06); }
+.stat-item:last-child { border-right:none; }
+.stat-n { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:700; color:var(--gold); line-height:1; margin-bottom:4px; }
+.stat-l { font-size:10px; color:rgba(255,255,255,.35); letter-spacing:.1em; text-transform:uppercase; }
+
+/* Gate card */
+.gate-card { background:white; border:1px solid var(--border); border-top:4px solid var(--gold); padding:36px 32px; margin-bottom:20px; }
+.gate-card h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:var(--navy); margin-bottom:6px; }
+.gate-card p { font-size:13px; color:var(--muted); margin-bottom:28px; line-height:1.6; }
+
+.field-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.field-lbl { display:block; font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--navy); margin-bottom:7px; }
+.field-in { width:100%; border:1px solid var(--border); padding:12px 15px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--ink); background:var(--cream); outline:none; transition:border-color .18s; }
+.field-in:focus { border-color:var(--gold); background:white; }
+.field-in::placeholder { color:#BAB0A0; }
+
+/* WhatsApp input */
+.wa-gate-row { display:flex; gap:0; margin-bottom:24px; }
+.wa-gate-cc { background:var(--warm); border:1px solid var(--border); border-right:none; padding:12px 14px; font-size:13px; color:var(--muted); display:flex; align-items:center; white-space:nowrap; gap:6px; }
+.wa-gate-in { flex:1; border:1px solid var(--border); padding:12px 16px; font-family:'DM Sans',sans-serif; font-size:15px; color:var(--ink); outline:none; transition:border-color .18s; background:white; }
+.wa-gate-in:focus { border-color:var(--wa); }
+.wa-gate-in::placeholder { color:#BAB0A0; }
+
+.wa-note { font-size:11px; color:var(--muted); margin-bottom:24px; display:flex; align-items:center; gap:6px; }
+.wa-note::before { content:'🔒'; }
+
+.btn-start { background:var(--gold); color:var(--ink); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; padding:15px 40px; border:none; cursor:pointer; transition:all .2s; display:inline-flex; align-items:center; gap:10px; }
+.btn-start:hover { background:#D9A445; transform:translateY(-1px); box-shadow:0 6px 20px rgba(200,147,58,.25); }
+
+/* Saving indicator */
+.saving-msg { display:none; align-items:center; gap:8px; font-size:12px; color:var(--wa); margin-top:14px; }
+.saving-dot { width:8px; height:8px; border-radius:50%; background:var(--wa); animation:pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* trust badges */
+.trust-row { display:flex; gap:24px; flex-wrap:wrap; margin-top:28px; padding-top:24px; border-top:1px solid var(--border); }
+.trust-item { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); }
+.trust-item span { font-size:16px; }
+
+/* ── ASSESSMENT ── */
+.assess-wrap { max-width:860px; margin:0 auto; padding:28px 28px 80px; }
+.q-dots { display:flex; gap:4px; flex-wrap:wrap; padding:16px 28px 0; max-width:860px; margin:0 auto; }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--border); transition:background .2s; cursor:pointer; }
+.dot.done { background:var(--gold); }
+.dot.active { background:var(--navy); }
+
+.q-card { background:white; border:1px solid var(--border); display:none; }
+.q-card.visible { display:block; animation:fadeUp .3s ease; }
+.q-card-top { background:var(--navy); padding:24px 32px 20px; position:relative; }
+.q-card-top::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold2),transparent); }
+.q-meta { font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.q-dim { color:rgba(255,255,255,.3); font-weight:400; }
+.q-dim::before { content:'·'; margin-right:8px; }
+.q-text { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:#F5EFE6; line-height:1.35; }
+.opts-wrap { padding:20px 28px 24px; display:flex; flex-direction:column; gap:8px; }
+.opt { display:flex; align-items:flex-start; gap:16px; padding:14px 18px; border:1px solid var(--border); cursor:pointer; transition:all .15s; user-select:none; }
+.opt:hover { border-color:var(--gold); background:var(--goldLt); }
+.opt.sel { border-color:var(--navy); background:#EBF0F8; }
+.opt.sel .opt-badge { background:var(--navy); color:white; border-color:var(--navy); }
+.opt-badge { width:28px; height:28px; min-width:28px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--muted); transition:all .15s; flex-shrink:0; margin-top:1px; }
+.opt-label { font-size:14px; color:var(--ink); line-height:1.5; }
+.q-foot { padding:16px 28px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; background:#FDFAF6; }
+.q-of { font-size:12px; color:var(--muted); }
+.q-of strong { color:var(--navy); }
+.btn-nav { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:11px 24px; border:none; cursor:pointer; transition:all .18s; display:inline-flex; align-items:center; gap:8px; }
+.btn-primary { background:var(--gold); color:var(--ink); }
+.btn-primary:hover { background:#D9A445; }
+.btn-primary:disabled { background:#E0D0B8; color:#AAA; cursor:not-allowed; }
+.btn-ghost { background:white; color:var(--navy); border:1px solid var(--border); }
+.btn-ghost:hover { border-color:var(--navy); }
+
+/* ── RESULT ── */
+.result-wrap { max-width:860px; margin:0 auto; padding:36px 28px 80px; }
+.score-card { background:var(--navy); padding:40px 40px 36px; position:relative; overflow:hidden; margin-bottom:20px; }
+.score-card::before { content:''; position:absolute; top:-80px; right:-80px; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle,rgba(200,147,58,.14) 0%,transparent 65%); }
+.score-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),transparent); }
+.score-date { font-size:10px; color:rgba(255,255,255,.28); letter-spacing:.12em; margin-bottom:8px; }
+.score-who { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#F5EFE6; margin-bottom:28px; }
+.score-row { display:flex; align-items:flex-end; gap:24px; margin-bottom:24px; flex-wrap:wrap; }
+.score-big { font-family:'Cormorant Garamond',serif; font-size:88px; font-weight:700; color:var(--gold); line-height:1; }
+.score-denom { font-family:'Cormorant Garamond',serif; font-size:36px; color:rgba(255,255,255,.2); padding-bottom:14px; }
+.score-verdict { padding-bottom:18px; }
+.score-verdict-kicker { font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.score-verdict-name { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:700; color:white; }
+.gauge-track { height:6px; background:rgba(255,255,255,.08); position:relative; margin-bottom:10px; }
+.gauge-fill { height:100%; background:linear-gradient(90deg,var(--rust) 0%,var(--gold) 50%,#4CAF50 100%); transition:width 1.2s cubic-bezier(.4,0,.2,1); position:relative; }
+.gauge-fill::after { content:''; position:absolute; right:-1px; top:-5px; width:16px; height:16px; border-radius:50%; background:white; border:3px solid var(--gold); box-shadow:0 2px 8px rgba(0,0,0,.3); }
+.gauge-labels { display:flex; justify-content:space-between; font-size:8.5px; color:rgba(255,255,255,.25); letter-spacing:.1em; }
+.band-card { padding:24px 28px; border-left:5px solid; margin-bottom:20px; }
+.band-headline { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; line-height:1.3; margin-bottom:10px; }
+.band-desc { font-size:14px; line-height:1.75; color:var(--muted); }
+.dim-section { background:white; border:1px solid var(--border); padding:28px 32px; margin-bottom:20px; }
+.section-label { font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--navy); margin-bottom:20px; display:flex; align-items:center; gap:10px; }
+.section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.dim-row { display:flex; align-items:center; gap:16px; padding:10px 0; border-bottom:1px solid var(--warm); }
+.dim-row:last-child { border-bottom:none; }
+.dim-name { font-size:13px; font-weight:500; min-width:170px; color:var(--ink); }
+.dim-track { flex:1; height:5px; background:var(--warm); border-radius:2px; overflow:hidden; }
+.dim-bar { height:100%; border-radius:2px; transition:width .9s ease; }
+.dim-score { font-size:12px; font-weight:700; min-width:40px; text-align:right; }
+.insight-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+.insight-box { padding:22px 24px; border:1px solid; }
+.insight-box h4 { font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; margin-bottom:14px; }
+.insight-box ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.insight-box ul li { font-size:13px; color:var(--muted); display:flex; gap:9px; line-height:1.45; }
+.i-str { background:var(--grnLt); border-color:#A8D5A8; }
+.i-str h4 { color:var(--grn); }
+.i-str li::before { content:'✓'; color:var(--grn); font-weight:700; flex-shrink:0; }
+.i-gap { background:var(--rustLt); border-color:#E0A890; }
+.i-gap h4 { color:var(--rust); }
+.i-gap li::before { content:'→'; color:var(--rust); font-weight:700; flex-shrink:0; }
+.next-card { padding:22px 26px; border:1px solid; margin-bottom:20px; }
+.next-card h4 { font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; margin-bottom:10px; }
+.next-card p { font-size:14px; line-height:1.7; }
+
+/* WhatsApp send section */
+.wa-send-card { background:var(--navy); padding:32px 36px; margin-bottom:20px; border-left:5px solid var(--wa); }
+.wa-send-card h3 { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:600; color:white; margin-bottom:8px; }
+.wa-send-card h3 em { font-style:italic; color:var(--gold); }
+.wa-send-card p { font-size:13px; color:rgba(255,255,255,.45); line-height:1.65; margin-bottom:20px; }
+.wa-prefilled { background:rgba(37,211,102,.08); border:1px solid rgba(37,211,102,.25); padding:14px 18px; color:#25D366; font-size:13px; font-weight:500; display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+.wa-btns { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.btn-wa { background:var(--wa); color:white; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:.06em; padding:13px 24px; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:9px; transition:all .2s; }
+.btn-wa:hover { background:#20BA5A; }
+.btn-wa-outline { background:transparent; color:var(--wa); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; padding:13px 22px; border:1px solid var(--wa); cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:all .2s; }
+.btn-wa-outline:hover { background:rgba(37,211,102,.08); }
+.btn-reset { background:none; color:rgba(255,255,255,.25); border:1px solid rgba(255,255,255,.1); font-family:'DM Sans',sans-serif; font-size:11px; padding:13px 18px; cursor:pointer; transition:all .2s; }
+.btn-reset:hover { color:rgba(255,255,255,.55); }
+.wa-confirm { display:none; margin-top:14px; background:rgba(37,211,102,.08); border:1px solid rgba(37,211,102,.25); padding:13px 18px; color:var(--wa); font-size:13px; font-weight:500; align-items:center; gap:10px; }
+
+.report-box { background:white; border:1px solid var(--border); padding:28px; }
+.report-pre { background:#F8F5F0; border:1px solid var(--border); padding:20px; font-family:monospace; font-size:11.5px; line-height:1.8; color:#444; white-space:pre-wrap; word-break:break-word; max-height:320px; overflow-y:auto; margin-bottom:14px; }
+.btn-copy { background:white; color:var(--navy); font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:10px 22px; border:1px solid var(--border); cursor:pointer; transition:all .18s; }
+.btn-copy:hover { border-color:var(--navy); }
+
+@media(max-width:600px){
+  .field-grid{grid-template-columns:1fr}
+  .insight-row{grid-template-columns:1fr}
+  .score-big{font-size:64px}
+  .dim-name{min-width:110px;font-size:11px}
+  .wa-btns{flex-direction:column;align-items:stretch}
+  .stats-strip{flex-wrap:wrap}
+  .stat-item{min-width:50%}
+}
+</style>
+</head>
+<body>
+
+<script>
+  // ════════════════════════════════════════════
+  // CONFIGURATION — paste your Apps Script URL
+  // ════════════════════════════════════════════
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzSFjU42lqLI3yEjW57rHTHiIkmKnl6VEMOQCefq6Auw5ANe46DKIOpsvu7suWQYxyS/exec';
+</script>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">Shikhar<span>Business Bottleneck Assessment</span></div>
+    <div class="prog-wrap">
+      <div class="prog-txt" id="progTxt">0 / 19</div>
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: INTRO + GATE ══ -->
+<div class="screen active" id="sc-intro">
+  <div class="intro-wrap">
+
+    <div class="kicker">Free Business Health Check</div>
+    <h1 class="intro-h1">Find your business<br><em>bottleneck</em> in 4 minutes.</h1>
+    <p class="intro-sub">19 diagnostic questions across the key dimensions that determine whether your business can grow — or is silently holding you back. Get your full personalised report, sent straight to your WhatsApp.</p>
+
+    <div class="stats-strip">
+      <div class="stat-item"><div class="stat-n">19</div><div class="stat-l">Questions</div></div>
+      <div class="stat-item"><div class="stat-n">4 min</div><div class="stat-l">To complete</div></div>
+      <div class="stat-item"><div class="stat-n">76</div><div class="stat-l">Max score</div></div>
+      <div class="stat-item"><div class="stat-n">Free</div><div class="stat-l">No login</div></div>
+    </div>
+
+    <div class="gate-card">
+      <h3>Where should we send your report?</h3>
+      <p>Enter your details below. Your personalised Business Bottleneck Report will be sent to your WhatsApp the moment you complete the assessment.</p>
+
+      <div class="field-grid">
+        <div>
+          <label class="field-lbl" for="fname">Your Name *</label>
+          <input class="field-in" id="fname" type="text" placeholder="Rajesh Shah">
+        </div>
+        <div>
+          <label class="field-lbl" for="fbiz">Business Name</label>
+          <input class="field-in" id="fbiz" type="text" placeholder="Shah Industries">
+        </div>
+      </div>
+      <div class="field-grid">
+        <div>
+          <label class="field-lbl" for="findus">Industry</label>
+          <input class="field-in" id="findus" type="text" placeholder="Chemicals, Diamond, FMCG…">
+        </div>
+        <div>
+          <label class="field-lbl" for="frev">Annual Turnover</label>
+          <select class="field-in" id="frev">
+            <option value="">Select range</option>
+            <option>Under ₹5 Cr</option>
+            <option>₹5 – ₹10 Cr</option>
+            <option>₹10 – ₹25 Cr</option>
+            <option>₹25 – ₹50 Cr</option>
+            <option>Above ₹50 Cr</option>
+          </select>
+        </div>
+      </div>
+
+      <label class="field-lbl">WhatsApp Number * <span style="font-weight:400;color:var(--muted);letter-spacing:0">(Report will be sent here)</span></label>
+      <div class="wa-gate-row">
+        <div class="wa-gate-cc">🇮🇳 +91</div>
+        <input class="wa-gate-in" id="fwa" type="tel" placeholder="98765 43210" maxlength="10">
+      </div>
+      <div class="wa-note">Your number is used only to send your report. We do not share it.</div>
+
+      <button class="btn-start" onclick="startAssessment()">
+        Start Assessment
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12,5 19,12 12,19"></polyline></svg>
+      </button>
+
+      <div class="saving-msg" id="savingMsg">
+        <div class="saving-dot"></div>
+        Saving your details…
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item"><span>🔒</span> No spam, ever</div>
+        <div class="trust-item"><span>⚡</span> Report in 4 minutes</div>
+        <div class="trust-item"><span>🆓</span> Completely free</div>
+        <div class="trust-item"><span>📱</span> Sent to WhatsApp</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ SCREEN: ASSESSMENT ══ -->
+<div class="screen" id="sc-assess">
+  <div class="q-dots" id="dotRow"></div>
+  <div class="assess-wrap" id="qContainer"></div>
+</div>
+
+<!-- ══ SCREEN: RESULT ══ -->
+<div class="screen" id="sc-result">
+  <div class="result-wrap" id="resultArea"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+const QS = [
+  {q:"How often do you personally speak with top customers (non-sales calls)?",dim:"Customer Relations",opts:["Rarely","Once a year","Every 6 months","Quarterly with feedback"]},
+  {q:"How do you manage your Inventory?",dim:"Operations",opts:["Guesswork","Excel / manual","ERP partially used","Fully automated"]},
+  {q:"What is your hiring process for key roles like department heads?",dim:"People & HR",opts:["Urgent / reactive hiring","Basic interview only","Structured test process","Competency-based SOP"]},
+  {q:"Are business processes documented — or do they live in people's memory?",dim:"Systems",opts:["Not documented at all","A few departments","Most departments","Full SOP culture"]},
+  {q:"How much of your time do you spend on future planning?",dim:"Leadership",opts:["Less than 5%","5 – 10%","10 – 25%","25% or more"]},
+  {q:"How does your company develop its team through training and mentoring?",dim:"People & HR",opts:["Rarely or never","Occasional, ad hoc","Quarterly programmes","Continuous learning system"]},
+  {q:"Do you benchmark all costs to improve efficiency? How often do you track?",dim:"Finance",opts:["No tracking at all","Monthly review","Department-level tracking","Real-time dashboard"]},
+  {q:"How confidently is your team using your Software / ERP?",dim:"Technology",opts:["No ERP in place","Basic usage only","Moderate integration","Fully integrated"]},
+  {q:"How do you track business progress? What is your review meeting frequency?",dim:"Execution",opts:["Irregular or none","Quarterly","Monthly","Monthly with KPI dashboard"]},
+  {q:"How does your leadership impact team energy and motivation?",dim:"Culture",opts:["Team is confused","Neutral energy","Motivated sometimes","Highly aligned and energised"]},
+  {q:"How do you plan company and department targets? What is your goal-setting approach?",dim:"Strategy",opts:["No goals set","Owner decides alone","Team discussion","Data-driven with accountability"]},
+  {q:"How do you know what happened in your business today? What is your daily reporting structure?",dim:"Execution",opts:["No formal reports","WhatsApp updates","Structured daily report","Automated live dashboard"]},
+  {q:"Does everyone know who to contact for what, and who owns which goal? (Org structure clarity)",dim:"Structure",opts:["Authority is unclear","Semi-defined","Clearly defined","Documented and practised daily"]},
+  {q:"Does everyone know the best way to do their work? (SOP / Workflow maturity)",dim:"Systems",opts:["No SOPs exist","Partial in some areas","Most areas covered","Fully standardised"]},
+  {q:"Does everyone know what they are responsible for and how they'll be measured? (JD & KRA clarity)",dim:"People & HR",opts:["No clarity on roles","Basic job descriptions","JD plus KRAs defined","Performance KRAs with review"]},
+  {q:"Do you know where your company will be in the next 3–5 years? (Vision clarity)",dim:"Strategy",opts:["No defined vision","Rough idea in my head","Written goals exist","Strong documented roadmap"]},
+  {q:"Do you have a strong second line to manage the business when you are away? (Leadership depth)",dim:"Leadership",opts:["Fully dependent on me","Average capability","Strong in some areas","Self-driven leaders across all functions"]},
+  {q:"Does your team know where the company is going and what their role is in that future? (Vision alignment)",dim:"Culture",opts:["Vision not shared","Shared once informally","Annual alignment session","Quarterly culture reviews"]},
+  {q:"Can you take multiple vacations a year without worry? (Owner freedom)",dim:"Automode",opts:["Stuck in daily operations","Occasional short breaks","2–3 vacations per year","Business runs in full Automode"]}
+];
+
+const BANDS = [
+  {min:0,  max:35, label:"Firefighting Business",            col:"#8B3A0F",bg:"#FDF0E8",bdr:"#E0A880",
+   headline:"Your business is running on you — and it knows it.",
+   desc:"The business is highly dependent on the owner for most decisions, processes, and energy. Growth is happening but it is fragile. One absence, one key person leaving, or one difficult quarter can create a crisis. This is the most common stage for businesses between ₹5 Cr and ₹20 Cr in South Gujarat.",
+   next:"A paid Shikhar Business Diagnostic will identify the 3 specific areas creating the most risk and show you the exact priority order to fix them."},
+  {min:36, max:52, label:"Growing but Chaotic",              col:"#9B6A0A",bg:"#FDF5E0",bdr:"#E0C070",
+   headline:"You have momentum — but the foundation is not solid yet.",
+   desc:"The business is growing and you have built some systems, but the growth is creating new chaos faster than you can structure it. The team is capable in patches but not consistently. You are still involved in too many decisions that should not require you.",
+   next:"A paid Shikhar Business Diagnostic will show you exactly which systems to build first to convert this growth into sustainable, structured scale."},
+  {min:53, max:65, label:"Structured but Not Yet Auto-Mode", col:"#0E5454",bg:"#E6F3F3",bdr:"#80C0C0",
+   headline:"Strong foundations — but the business still needs you too much.",
+   desc:"You have built a solid business with real systems, a capable team, and a clear direction. But the business has not yet reached the point where it can grow without your active involvement. You are currently the ceiling of your own business.",
+   next:"A paid Shikhar Business Diagnostic will identify the specific gaps keeping you from true Automode — and show you how close you actually are."},
+  {min:66, max:76, label:"Scalable Organisation",            col:"#1E5C1E",bg:"#E8F5E8",bdr:"#80C080",
+   headline:"You have built something genuinely remarkable.",
+   desc:"Your business has strong systems, a capable leadership team, clear strategy, and the ability to operate without you in daily decisions. You are in a rare position — most business owners at your revenue level have not achieved this.",
+   next:"A paid Shikhar Business Diagnostic will show you the specific opportunities to scale further and build lasting personal wealth from what you have already built."}
+];
+
+const DIMS = ["Strategy","Leadership","People & HR","Systems","Execution","Culture","Finance","Technology","Customer Relations","Structure","Automode"];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let answers  = new Array(QS.length).fill(null);
+let owner    = {};
+let currentQ = 0;
+
+// ═══════════════════════════════════════════════
+// GOOGLE SHEETS — sends data silently
+// ═══════════════════════════════════════════════
+function sendToSheet(payload) {
+  if (!SHEET_URL || SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') return;
+  try {
+    fetch(SHEET_URL, {
+      method:  'POST',
+      mode:    'no-cors',
+      headers: {'Content-Type':'application/json'},
+      body:    JSON.stringify(payload)
+    });
+  } catch(e) { console.log('Sheet error:', e); }
+}
+
+// ═══════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sc-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateProg() {
+  const done = answers.filter(a=>a!==null).length;
+  document.getElementById('progFill').style.width = (done/QS.length*100)+'%';
+  document.getElementById('progTxt').textContent  = done+' / '+QS.length;
+  document.querySelectorAll('.dot').forEach((d,i)=>{
+    d.className='dot'+(answers[i]!==null?' done':'')+(i===currentQ?' active':'');
+  });
+}
+
+function barColor(avg) {
+  if(avg<2)   return '#8B3A0F';
+  if(avg<2.5) return '#C8933A';
+  if(avg<3.2) return '#1E6B6B';
+  return '#1E5C1E';
+}
+
+function getDimScores() {
+  return DIMS.map(dim=>{
+    const qs=QS.map((q,i)=>({...q,ans:answers[i]})).filter(q=>q.dim===dim&&q.ans!==null);
+    if(!qs.length) return null;
+    const avg=qs.reduce((s,q)=>s+q.ans,0)/qs.length;
+    return {dim,avg,pct:(avg/4)*100};
+  }).filter(Boolean);
+}
+
+// ═══════════════════════════════════════════════
+// START — gate validation
+// ═══════════════════════════════════════════════
+function startAssessment() {
+  const name = document.getElementById('fname').value.trim();
+  const wa   = document.getElementById('fwa').value.replace(/\D/g,'');
+  if(!name)           { alert('Please enter your name.'); return; }
+  if(wa.length !== 10){ alert('Please enter a valid 10-digit WhatsApp number.'); return; }
+
+  owner = {
+    name,
+    biz:   document.getElementById('fbiz').value.trim()   || 'Not specified',
+    indus: document.getElementById('findus').value.trim() || 'Not specified',
+    rev:   document.getElementById('frev').value          || 'Not specified',
+    wa:    '+91' + wa
+  };
+
+  document.getElementById('savingMsg').style.display = 'flex';
+
+  sendToSheet({
+    event:     'LEAD_STARTED',
+    timestamp: new Date().toISOString(),
+    name:      owner.name,
+    business:  owner.biz,
+    industry:  owner.indus,
+    turnover:  owner.rev,
+    whatsapp:  owner.wa,
+    score:     '',
+    result:    '',
+    completed: 'No'
+  });
+
+  setTimeout(()=>{
+    buildQuestions();
+    showScreen('assess');
+    showQ(0);
+  }, 600);
+}
+
+// ═══════════════════════════════════════════════
+// BUILD QUESTIONS
+// ═══════════════════════════════════════════════
+function buildQuestions() {
+  document.getElementById('dotRow').innerHTML =
+    QS.map((_,i)=>`<div class="dot" id="dot${i}" onclick="jumpQ(${i})"></div>`).join('');
+
+  document.getElementById('qContainer').innerHTML = QS.map((q,i)=>`
+    <div class="q-card" id="qc${i}">
+      <div class="q-card-top">
+        <div class="q-meta">Q${i+1} <span class="q-dim">${q.dim}</span></div>
+        <div class="q-text">${q.q}</div>
+      </div>
+      <div class="opts-wrap">
+        ${q.opts.map((o,j)=>`
+          <div class="opt" id="opt${i}_${j}" onclick="pick(${i},${j})">
+            <div class="opt-badge">${['A','B','C','D'][j]}</div>
+            <div class="opt-label">${o}</div>
+          </div>`).join('')}
+      </div>
+      <div class="q-foot">
+        <span class="q-of"><strong>${i+1}</strong> of ${QS.length}</span>
+        <div style="display:flex;gap:10px;">
+          ${i>0?`<button class="btn-nav btn-ghost" onclick="showQ(${i-1})">← Back</button>`:''}
+          ${i<QS.length-1
+            ?`<button class="btn-nav btn-primary" id="nxt${i}" onclick="advance(${i})" disabled>Next →</button>`
+            :`<button class="btn-nav btn-primary" id="nxt${i}" onclick="buildResult()" disabled>See My Report →</button>`}
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function showQ(i) {
+  document.querySelectorAll('.q-card').forEach(c=>c.classList.remove('visible'));
+  document.getElementById('qc'+i).classList.add('visible');
+  currentQ=i;
+  if(answers[i]!==null){
+    document.getElementById(`opt${i}_${answers[i]-1}`)?.classList.add('sel');
+    document.getElementById(`nxt${i}`).disabled=false;
+  }
+  updateProg();
+}
+
+function jumpQ(i){
+  if(i>0&&answers[i-1]===null) return;
+  showQ(i);
+}
+
+function pick(qi,oi){
+  for(let j=0;j<4;j++) document.getElementById(`opt${qi}_${j}`)?.classList.remove('sel');
+  document.getElementById(`opt${qi}_${oi}`).classList.add('sel');
+  answers[qi]=oi+1;
+  document.getElementById(`nxt${qi}`).disabled=false;
+  updateProg();
+  if(qi<QS.length-1) setTimeout(()=>advance(qi),360);
+}
+
+function advance(i){
+  if(answers[i]===null) return;
+  showQ(i+1);
+}
+
+// ═══════════════════════════════════════════════
+// BUILD RESULT
+// ═══════════════════════════════════════════════
+function buildResult(){
+  const unanswered=answers.findIndex(a=>a===null);
+  if(unanswered!==-1){showQ(unanswered);alert(`Please answer question ${unanswered+1}.`);return;}
+
+  const total = answers.reduce((s,a)=>s+a,0);
+  const band  = BANDS.find(b=>total>=b.min&&total<=b.max)||BANDS[0];
+  const pct   = Math.round((total/76)*100);
+  const dims  = getDimScores();
+  const str   = dims.filter(d=>d.avg>=3).sort((a,b)=>b.avg-a.avg).slice(0,3);
+  const gaps  = dims.filter(d=>d.avg<2.5).sort((a,b)=>a.avg-b.avg).slice(0,3);
+  const today = new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  const rpt   = makeReport(total,band,dims,str,gaps,today);
+
+  // ── Fire completion to Google Sheets (includes report_text for PDF) ──
+  sendToSheet({
+    event:           'ASSESSMENT_COMPLETED',
+    timestamp:       new Date().toISOString(),
+    name:            owner.name,
+    business:        owner.biz,
+    industry:        owner.indus,
+    turnover:        owner.rev,
+    whatsapp:        owner.wa,
+    score:           total+'/76',
+    result:          band.label,
+    completed:       'Yes',
+    strategy:        (dims.find(d=>d.dim==='Strategy')?.avg||0).toFixed(1),
+    leadership:      (dims.find(d=>d.dim==='Leadership')?.avg||0).toFixed(1),
+    people_hr:       (dims.find(d=>d.dim==='People & HR')?.avg||0).toFixed(1),
+    systems:         (dims.find(d=>d.dim==='Systems')?.avg||0).toFixed(1),
+    execution:       (dims.find(d=>d.dim==='Execution')?.avg||0).toFixed(1),
+    culture:         (dims.find(d=>d.dim==='Culture')?.avg||0).toFixed(1),
+    finance:         (dims.find(d=>d.dim==='Finance')?.avg||0).toFixed(1),
+    technology:      (dims.find(d=>d.dim==='Technology')?.avg||0).toFixed(1),
+    customer:        (dims.find(d=>d.dim==='Customer Relations')?.avg||0).toFixed(1),
+    structure:       (dims.find(d=>d.dim==='Structure')?.avg||0).toFixed(1),
+    automode:        (dims.find(d=>d.dim==='Automode')?.avg||0).toFixed(1),
+    top_strengths:   str.map(s=>s.dim).join(', '),
+    top_gaps:        gaps.map(g=>g.dim).join(', '),
+    report_text:     rpt   // ← sends full report text so Apps Script can generate PDF
+  });
+
+  const area=document.getElementById('resultArea');
+  area.innerHTML=`
+    <div class="score-card">
+      <div class="score-date">Assessment completed · ${today}</div>
+      <div class="score-who">${owner.name} &nbsp;·&nbsp; ${owner.biz}</div>
+      <div class="score-row">
+        <div class="score-big" id="animScore">0</div>
+        <div class="score-denom">/ 76</div>
+        <div class="score-verdict">
+          <div class="score-verdict-kicker">Your Result</div>
+          <div class="score-verdict-name">${band.label}</div>
+        </div>
+      </div>
+      <div class="gauge-track"><div class="gauge-fill" id="gaugeFill" style="width:0%"></div></div>
+      <div class="gauge-labels">
+        <span>Firefighting (0–35)</span><span>Growing (36–52)</span>
+        <span>Structured (53–65)</span><span>Auto-Mode (66+)</span>
+      </div>
+    </div>
+
+    <div class="band-card" style="border-color:${band.bdr};background:${band.bg}">
+      <div class="band-headline" style="color:${band.col}">${band.headline}</div>
+      <div class="band-desc">${band.desc}</div>
+    </div>
+
+    <div class="dim-section">
+      <div class="section-label">Score by Dimension</div>
+      ${dims.map(d=>`
+        <div class="dim-row">
+          <div class="dim-name">${d.dim}</div>
+          <div class="dim-track"><div class="dim-bar" style="width:${d.pct}%;background:${barColor(d.avg)}"></div></div>
+          <div class="dim-score" style="color:${barColor(d.avg)}">${d.avg.toFixed(1)}/4</div>
+        </div>`).join('')}
+    </div>
+
+    <div class="insight-row">
+      <div class="insight-box i-str">
+        <h4>Your Strengths</h4>
+        <ul>${str.length?str.map(s=>`<li>${s.dim} (${s.avg.toFixed(1)}/4)</li>`).join(''):'<li>Keep developing across all areas</li>'}</ul>
+      </div>
+      <div class="insight-box i-gap">
+        <h4>Priority Gaps</h4>
+        <ul>${gaps.length?gaps.map(g=>`<li>${g.dim} (${g.avg.toFixed(1)}/4)</li>`).join(''):'<li>Performing well across all dimensions</li>'}</ul>
+      </div>
+    </div>
+
+    <div class="next-card" style="background:${band.bg};border-color:${band.bdr}">
+      <h4 style="color:${band.col}">Your Next Step</h4>
+      <p style="color:#555">${band.next}</p>
+    </div>
+
+    <div class="wa-send-card">
+      <h3>Send your report to <em>WhatsApp</em></h3>
+      <p>Your report is ready. Tap below to open WhatsApp with the full report pre-filled for ${owner.wa} — just tap Send.</p>
+      <div class="wa-prefilled">📱 Sending to: <strong>${owner.wa}</strong></div>
+      <div class="wa-btns">
+        <button class="btn-wa" onclick="sendWA()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send to My WhatsApp
+        </button>
+        <button class="btn-wa-outline" onclick="copyReport()">📋 Copy Report</button>
+        <button class="btn-reset" onclick="resetAll()">Start Over</button>
+      </div>
+      <div class="wa-confirm" id="waConfirm">✓ WhatsApp opened — tap Send to receive your report.</div>
+    </div>
+
+    <div class="report-box">
+      <div class="section-label" style="margin-bottom:14px;">Full Report Text</div>
+      <div class="report-pre" id="reportPre"></div>
+      <button class="btn-copy" onclick="copyReport()">Copy Report Text</button>
+    </div>`;
+
+  document.getElementById('reportPre').textContent = rpt;
+  showScreen('result');
+  updateProg();
+
+  // Animate score
+  let n=0;
+  const ticker=setInterval(()=>{
+    n=Math.min(n+2,total);
+    document.getElementById('animScore').textContent=n;
+    if(n>=total) clearInterval(ticker);
+  },30);
+  setTimeout(()=>{ document.getElementById('gaugeFill').style.width=pct+'%'; },200);
+}
+
+// ═══════════════════════════════════════════════
+// REPORT TEXT
+// ═══════════════════════════════════════════════
+function makeReport(total,band,dims,str,gaps,date){
+  const bar=avg=>'█'.repeat(Math.round(avg))+'░'.repeat(4-Math.round(avg));
+  return `*SHIKHAR — BUSINESS BOTTLENECK REPORT*
+━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 *Date:* ${date}
+👤 *Name:* ${owner.name}
+🏭 *Business:* ${owner.biz}
+🏢 *Industry:* ${owner.indus}
+💰 *Turnover:* ${owner.rev}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+📊 *YOUR OVERALL SCORE*
+━━━━━━━━━━━━━━━━━━━━━━━
+Score: *${total} / 76*
+Result: *${band.label}*
+
+${band.headline}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+📈 *SCORE BY DIMENSION*
+━━━━━━━━━━━━━━━━━━━━━━━
+${dims.map(d=>`${bar(d.avg)} ${d.dim}: ${d.avg.toFixed(1)}/4`).join('\n')}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+✅ *YOUR STRENGTHS*
+━━━━━━━━━━━━━━━━━━━━━━━
+${str.length?str.map(s=>`• ${s.dim} (${s.avg.toFixed(1)}/4)`).join('\n'):'• Keep building across all areas'}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ *PRIORITY GAPS TO FIX*
+━━━━━━━━━━━━━━━━━━━━━━━
+${gaps.length?gaps.map(g=>`• ${g.dim} (${g.avg.toFixed(1)}/4) — needs attention`).join('\n'):'• Performing well across all dimensions'}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+🎯 *WHAT THIS MEANS*
+━━━━━━━━━━━━━━━━━━━━━━━
+${band.desc}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+🚀 *YOUR NEXT STEP*
+━━━━━━━━━━━━━━━━━━━━━━━
+${band.next}
+
+_Shikhar Peak Performance Coaching_
+_"Only a Happy Entrepreneur is truly Successful."_`;
+}
+
+// ═══════════════════════════════════════════════
+// WHATSAPP
+// ═══════════════════════════════════════════════
+function sendWA(){
+  const txt=document.getElementById('reportPre').textContent;
+  const num=owner.wa.replace('+','');
+  window.open(`https://wa.me/${num}?text=${encodeURIComponent(txt)}`,'_blank');
+  const el=document.getElementById('waConfirm');
+  el.style.display='flex';
+  setTimeout(()=>el.style.display='none',6000);
+}
+
+function copyReport(){
+  const txt=document.getElementById('reportPre').textContent;
+  navigator.clipboard?.writeText(txt).then(()=>alert('Copied! Paste into WhatsApp.')).catch(()=>{
+    const ta=document.createElement('textarea');
+    ta.value=txt; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    alert('Copied! Paste into WhatsApp.');
+  });
+}
+
+function resetAll(){
+  answers=new Array(QS.length).fill(null);
+  currentQ=0;
+  document.getElementById('progFill').style.width='0%';
+  document.getElementById('progTxt').textContent='0 / '+QS.length;
+  showScreen('intro');
+}
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
