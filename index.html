@@ -39,23 +39,28 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 .intro-wrap { max-width:700px; margin:0 auto; padding:56px 28px 80px; }
 .kicker { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); margin-bottom:24px; }
 .kicker::before { content:''; width:20px; height:1px; background:var(--gold); }
-.intro-h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,6vw,52px); font-weight:700; line-height:1.1; color:var(--navy); margin-bottom:18px; }
+.intro-h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,6vw,52px); font-weight:700; line-height:1.1; color:var(--navy); margin-bottom:10px; }
 .intro-h1 em { font-style:italic; color:var(--gold); }
-.intro-sub { font-size:15px; font-weight:300; color:var(--muted); line-height:1.75; margin-bottom:36px; max-width:520px; }
+.intro-h1-hi { font-family:'DM Sans',sans-serif; font-size:clamp(18px,3vw,26px); font-weight:400; color:var(--muted); line-height:1.3; margin-bottom:18px; }
+.intro-sub { font-size:15px; font-weight:300; color:var(--muted); line-height:1.75; margin-bottom:6px; max-width:520px; }
+.intro-sub-hi { font-size:13px; font-weight:300; color:#9A8A76; line-height:1.7; margin-bottom:36px; max-width:520px; }
 
 .stats-strip { background:var(--navy); display:flex; margin-bottom:36px; }
 .stat-item { flex:1; padding:20px 16px; text-align:center; border-right:1px solid rgba(255,255,255,.06); }
 .stat-item:last-child { border-right:none; }
 .stat-n { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:700; color:var(--gold); line-height:1; margin-bottom:4px; }
 .stat-l { font-size:10px; color:rgba(255,255,255,.35); letter-spacing:.1em; text-transform:uppercase; }
+.stat-l-hi { font-size:9px; color:rgba(255,255,255,.2); margin-top:2px; }
 
 /* Gate card */
 .gate-card { background:white; border:1px solid var(--border); border-top:4px solid var(--gold); padding:36px 32px; margin-bottom:20px; }
-.gate-card h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:var(--navy); margin-bottom:6px; }
+.gate-card h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+.gate-card h3-hi { display:block; font-size:13px; color:var(--muted); font-weight:400; margin-bottom:6px; }
 .gate-card p { font-size:13px; color:var(--muted); margin-bottom:28px; line-height:1.6; }
 
 .field-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
-.field-lbl { display:block; font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--navy); margin-bottom:7px; }
+.field-lbl { display:block; font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--navy); margin-bottom:3px; }
+.field-lbl-hi { display:block; font-size:10px; color:var(--muted); margin-bottom:6px; font-weight:400; letter-spacing:0; }
 .field-in { width:100%; border:1px solid var(--border); padding:12px 15px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--ink); background:var(--cream); outline:none; transition:border-color .18s; }
 .field-in:focus { border-color:var(--gold); background:white; }
 .field-in::placeholder { color:#BAB0A0; }
@@ -97,14 +102,18 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 .q-meta { font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
 .q-dim { color:rgba(255,255,255,.3); font-weight:400; }
 .q-dim::before { content:'·'; margin-right:8px; }
-.q-text { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:#F5EFE6; line-height:1.35; }
+.q-text { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:#F5EFE6; line-height:1.35; margin-bottom:6px; }
+.q-text-hi { font-size:13px; color:rgba(255,255,255,.45); line-height:1.5; font-weight:300; }
+
 .opts-wrap { padding:20px 28px 24px; display:flex; flex-direction:column; gap:8px; }
 .opt { display:flex; align-items:flex-start; gap:16px; padding:14px 18px; border:1px solid var(--border); cursor:pointer; transition:all .15s; user-select:none; }
 .opt:hover { border-color:var(--gold); background:var(--goldLt); }
 .opt.sel { border-color:var(--navy); background:#EBF0F8; }
 .opt.sel .opt-badge { background:var(--navy); color:white; border-color:var(--navy); }
-.opt-badge { width:28px; height:28px; min-width:28px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--muted); transition:all .15s; flex-shrink:0; margin-top:1px; }
-.opt-label { font-size:14px; color:var(--ink); line-height:1.5; }
+.opt-badge { width:28px; height:28px; min-width:28px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--muted); transition:all .15s; flex-shrink:0; margin-top:2px; }
+.opt-label { font-size:14px; color:var(--ink); line-height:1.45; }
+.opt-label-hi { font-size:12px; color:var(--muted); line-height:1.4; margin-top:3px; }
+
 .q-foot { padding:16px 28px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; background:#FDFAF6; }
 .q-of { font-size:12px; color:var(--muted); }
 .q-of strong { color:var(--navy); }
@@ -193,9 +202,6 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 <body>
 
 <script>
-  // ════════════════════════════════════════════
-  // CONFIGURATION — paste your Apps Script URL
-  // ════════════════════════════════════════════
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzSFjU42lqLI3yEjW57rHTHiIkmKnl6VEMOQCefq6Auw5ANe46DKIOpsvu7suWQYxyS/exec';
 </script>
 
@@ -203,7 +209,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
   <div class="topbar-inner">
     <div class="logo">Shikhar<span>Business Bottleneck Assessment</span></div>
     <div class="prog-wrap">
-      <div class="prog-txt" id="progTxt">0 / 19</div>
+      <div class="prog-txt" id="progTxt">0 / 22</div>
       <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
     </div>
   </div>
@@ -213,70 +219,90 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 <div class="screen active" id="sc-intro">
   <div class="intro-wrap">
 
-    <div class="kicker">Free Business Health Check</div>
+    <div class="kicker">Free Business Health Check · मुफ़्त बिज़नेस हेल्थ चेक</div>
     <h1 class="intro-h1">Find your business<br><em>bottleneck</em> in 4 minutes.</h1>
-    <p class="intro-sub">19 diagnostic questions across the key dimensions that determine whether your business can grow — or is silently holding you back. Get your full personalised report, sent straight to your WhatsApp.</p>
+    <div class="intro-h1-hi">अपने बिज़नेस की सबसे बड़ी रुकावट 4 मिनट में खोजें।</div>
+    <p class="intro-sub">22 diagnostic questions across the key dimensions that determine whether your business can grow — or is silently holding you back. Get your full personalised report, sent straight to your WhatsApp.</p>
+    <p class="intro-sub-hi">22 सवाल — जो यह तय करते हैं कि आपका बिज़नेस आगे बढ़ेगा या रुका रहेगा। पूरी रिपोर्ट सीधे आपके WhatsApp पर।</p>
 
     <div class="stats-strip">
-      <div class="stat-item"><div class="stat-n">19</div><div class="stat-l">Questions</div></div>
-      <div class="stat-item"><div class="stat-n">4 min</div><div class="stat-l">To complete</div></div>
-      <div class="stat-item"><div class="stat-n">76</div><div class="stat-l">Max score</div></div>
-      <div class="stat-item"><div class="stat-n">Free</div><div class="stat-l">No login</div></div>
+      <div class="stat-item">
+        <div class="stat-n">22</div>
+        <div class="stat-l">Questions</div>
+        <div class="stat-l-hi">सवाल</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">4 min</div>
+        <div class="stat-l">To complete</div>
+        <div class="stat-l-hi">में पूरा करें</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">88</div>
+        <div class="stat-l">Max score</div>
+        <div class="stat-l-hi">अधिकतम स्कोर</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">Free</div>
+        <div class="stat-l">No login</div>
+        <div class="stat-l-hi">बिल्कुल मुफ़्त</div>
+      </div>
     </div>
 
     <div class="gate-card">
       <h3>Where should we send your report?</h3>
-      <p>Enter your details below. Your personalised Business Bottleneck Report will be sent to your WhatsApp the moment you complete the assessment.</p>
+      <span class="gate-card h3-hi" style="display:block;font-size:13px;color:var(--muted);margin-bottom:6px;">रिपोर्ट कहाँ भेजें?</span>
+      <p>Enter your details below. Your personalised Business Bottleneck Report will be sent to your WhatsApp the moment you complete the assessment.<br>
+      <span style="font-size:12px;color:#9A8A76;">नीचे अपनी जानकारी भरें। असेसमेंट पूरा होते ही रिपोर्ट आपके WhatsApp पर आ जाएगी।</span></p>
 
       <div class="field-grid">
         <div>
-          <label class="field-lbl" for="fname">Your Name *</label>
+          <label class="field-lbl" for="fname">Your Name * / आपका नाम *</label>
           <input class="field-in" id="fname" type="text" placeholder="Rajesh Shah">
         </div>
         <div>
-          <label class="field-lbl" for="fbiz">Business Name</label>
+          <label class="field-lbl" for="fbiz">Business Name / बिज़नेस का नाम</label>
           <input class="field-in" id="fbiz" type="text" placeholder="Shah Industries">
         </div>
       </div>
       <div class="field-grid">
         <div>
-          <label class="field-lbl" for="findus">Industry</label>
+          <label class="field-lbl" for="findus">Industry / उद्योग</label>
           <input class="field-in" id="findus" type="text" placeholder="Chemicals, Diamond, FMCG…">
         </div>
         <div>
-          <label class="field-lbl" for="frev">Annual Turnover</label>
+          <label class="field-lbl" for="frev">Annual Turnover / वार्षिक टर्नओवर</label>
           <select class="field-in" id="frev">
-            <option value="">Select range</option>
-            <option>Under ₹5 Cr</option>
+            <option value="">Select range / चुनें</option>
+            <option>Under ₹5 Cr / ₹5 Cr से कम</option>
             <option>₹5 – ₹10 Cr</option>
             <option>₹10 – ₹25 Cr</option>
             <option>₹25 – ₹50 Cr</option>
-            <option>Above ₹50 Cr</option>
+            <option>Above ₹50 Cr / ₹50 Cr से अधिक</option>
           </select>
         </div>
       </div>
 
-      <label class="field-lbl">WhatsApp Number * <span style="font-weight:400;color:var(--muted);letter-spacing:0">(Report will be sent here)</span></label>
+      <label class="field-lbl">WhatsApp Number * <span style="font-weight:400;color:var(--muted);letter-spacing:0">(Report will be sent here / रिपोर्ट यहाँ भेजी जाएगी)</span></label>
       <div class="wa-gate-row">
         <div class="wa-gate-cc">🇮🇳 +91</div>
         <input class="wa-gate-in" id="fwa" type="tel" placeholder="98765 43210" maxlength="10">
       </div>
-      <div class="wa-note">Your number is used only to send your report. We do not share it.</div>
+      <div class="wa-note">Your number is used only to send your report. We do not share it. / आपका नंबर केवल रिपोर्ट भेजने के लिए उपयोग होगा।</div>
 
       <button class="btn-start" onclick="startAssessment()">
-        Start Assessment
+        Start Assessment / असेसमेंट शुरू करें
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
       </button>
 
       <div class="saving-msg" id="savingMsg">
         <div class="saving-dot"></div>
-        Saving your details…
+        Saving your details… / जानकारी सहेजी जा रही है…
       </div>
 
       <div class="trust-row">
-        <div class="trust-item"><span>🔒</span> No spam, ever</div>
-        <div class="trust-item"><span>⚡</span> Report in 4 minutes</div>
-        <div class="trust-item"><span>🆓</span> Completely free</div>
+        <div class="trust-item"><span>🔒</span> No spam / स्पैम नहीं</div>
+        <div class="trust-item"><span>⚡</span> 4 min report</div>
+        <div class="trust-item"><span>🆓</span> Completely free / बिल्कुल मुफ़्त</div>
         <div class="trust-item"><span>📱</span> Sent to WhatsApp</div>
       </div>
     </div>
@@ -297,50 +323,237 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 
 <script>
 // ═══════════════════════════════════════════════
-// DATA
+// DATA — 22 Questions (English + Hindi)
+// Max Score = 88
 // ═══════════════════════════════════════════════
 const QS = [
-  {q:"How often do you personally speak with top customers (non-sales calls)?",dim:"Customer Relations",opts:["Rarely","Once a year","Every 6 months","Quarterly with feedback"]},
-  {q:"How do you manage your Inventory?",dim:"Operations",opts:["Guesswork","Excel / manual","ERP partially used","Fully automated"]},
-  {q:"What is your hiring process for key roles like department heads?",dim:"People & HR",opts:["Urgent / reactive hiring","Basic interview only","Structured test process","Competency-based SOP"]},
-  {q:"Are business processes documented — or do they live in people's memory?",dim:"Systems",opts:["Not documented at all","A few departments","Most departments","Full SOP culture"]},
-  {q:"How much of your time do you spend on future planning?",dim:"Leadership",opts:["Less than 5%","5 – 10%","10 – 25%","25% or more"]},
-  {q:"How does your company develop its team through training and mentoring?",dim:"People & HR",opts:["Rarely or never","Occasional, ad hoc","Quarterly programmes","Continuous learning system"]},
-  {q:"Do you benchmark all costs to improve efficiency? How often do you track?",dim:"Finance",opts:["No tracking at all","Monthly review","Department-level tracking","Real-time dashboard"]},
-  {q:"How confidently is your team using your Software / ERP?",dim:"Technology",opts:["No ERP in place","Basic usage only","Moderate integration","Fully integrated"]},
-  {q:"How do you track business progress? What is your review meeting frequency?",dim:"Execution",opts:["Irregular or none","Quarterly","Monthly","Monthly with KPI dashboard"]},
-  {q:"How does your leadership impact team energy and motivation?",dim:"Culture",opts:["Team is confused","Neutral energy","Motivated sometimes","Highly aligned and energised"]},
-  {q:"How do you plan company and department targets? What is your goal-setting approach?",dim:"Strategy",opts:["No goals set","Owner decides alone","Team discussion","Data-driven with accountability"]},
-  {q:"How do you know what happened in your business today? What is your daily reporting structure?",dim:"Execution",opts:["No formal reports","WhatsApp updates","Structured daily report","Automated live dashboard"]},
-  {q:"Does everyone know who to contact for what, and who owns which goal? (Org structure clarity)",dim:"Structure",opts:["Authority is unclear","Semi-defined","Clearly defined","Documented and practised daily"]},
-  {q:"Does everyone know the best way to do their work? (SOP / Workflow maturity)",dim:"Systems",opts:["No SOPs exist","Partial in some areas","Most areas covered","Fully standardised"]},
-  {q:"Does everyone know what they are responsible for and how they'll be measured? (JD & KRA clarity)",dim:"People & HR",opts:["No clarity on roles","Basic job descriptions","JD plus KRAs defined","Performance KRAs with review"]},
-  {q:"Do you know where your company will be in the next 3–5 years? (Vision clarity)",dim:"Strategy",opts:["No defined vision","Rough idea in my head","Written goals exist","Strong documented roadmap"]},
-  {q:"Do you have a strong second line to manage the business when you are away? (Leadership depth)",dim:"Leadership",opts:["Fully dependent on me","Average capability","Strong in some areas","Self-driven leaders across all functions"]},
-  {q:"Does your team know where the company is going and what their role is in that future? (Vision alignment)",dim:"Culture",opts:["Vision not shared","Shared once informally","Annual alignment session","Quarterly culture reviews"]},
-  {q:"Can you take multiple vacations a year without worry? (Owner freedom)",dim:"Automode",opts:["Stuck in daily operations","Occasional short breaks","2–3 vacations per year","Business runs in full Automode"]}
+
+  // ── GROWTH (NEW) ──
+  {
+    q:   "How are your sales trending compared to your industry?",
+    qhi: "आपकी बिक्री आपके उद्योग की तुलना में कैसी है?",
+    dim: "Growth",
+    opts:   ["Increasing — above industry average","Growing in line with industry average","Stagnant — no significant movement","Declining"],
+    optshi: ["बढ़ रही है — उद्योग औसत से अधिक","उद्योग औसत के बराबर बढ़ रही है","स्थिर — कोई खास बदलाव नहीं","घट रही है"]
+  },
+
+  // ── MARKET POSITION (NEW) ──
+  {
+    q:   "Do you have a clear USP (Unique Selling Proposition) and differentiation in the market?",
+    qhi: "क्या आपके पास बाज़ार में एक स्पष्ट USP और अलग पहचान है?",
+    dim: "Market Position",
+    opts:   ["Yes — very strong, clear USP that customers recognise","Only price — we compete mainly on being cheaper","Our products/services are similar to others in the market","No differentiation — we blend in with the competition"],
+    optshi: ["हाँ — बहुत मजबूत, स्पष्ट USP जो ग्राहक पहचानते हैं","केवल कीमत — हम सस्ते होने पर निर्भर हैं","हमारे उत्पाद/सेवाएँ बाज़ार में दूसरों जैसी ही हैं","कोई अंतर नहीं — हम बाज़ार में भीड़ का हिस्सा हैं"]
+  },
+
+  // ── CASH FLOW (NEW) ──
+  {
+    q:   "How would you describe your payment collection from customers?",
+    qhi: "ग्राहकों से भुगतान वसूली आप कैसे करते हैं?",
+    dim: "Cash Flow",
+    opts:   ["Always on time — payments come in as expected","Some on time, some delayed","Payments are frequently late","No idea — I don't actively track collections"],
+    optshi: ["हमेशा समय पर — भुगतान अपेक्षानुसार आता है","कुछ समय पर, कुछ देरी से","भुगतान अक्सर देरी से आता है","कोई जानकारी नहीं — मैं सक्रिय रूप से ट्रैक नहीं करता"]
+  },
+
+  // ── CUSTOMER RELATIONS ──
+  {
+    q:   "How often do you personally speak with top customers (non-sales calls)?",
+    qhi: "आप अपने प्रमुख ग्राहकों से व्यक्तिगत रूप से कितनी बार बात करते हैं? (बिक्री से अलग)",
+    dim: "Customer Relations",
+    opts:   ["Rarely","Once a year","Every 6 months","Quarterly with feedback"],
+    optshi: ["शायद ही कभी","साल में एक बार","हर 6 महीने में","तिमाही — फीडबैक के साथ"]
+  },
+
+  // ── OPERATIONS ──
+  {
+    q:   "How do you manage your Inventory?",
+    qhi: "आप अपनी इन्वेंटरी कैसे प्रबंधित करते हैं?",
+    dim: "Operations",
+    opts:   ["Guesswork","Excel / manual","ERP partially used","Fully automated"],
+    optshi: ["अनुमान से","Excel / मैनुअल","ERP आंशिक रूप से","पूरी तरह स्वचालित"]
+  },
+
+  // ── PEOPLE & HR (1) ──
+  {
+    q:   "What is your hiring process for key roles like department heads?",
+    qhi: "विभागीय प्रमुखों जैसी महत्वपूर्ण भूमिकाओं के लिए आपकी भर्ती प्रक्रिया क्या है?",
+    dim: "People & HR",
+    opts:   ["Urgent / reactive hiring","Basic interview only","Structured test process","Competency-based SOP"],
+    optshi: ["जरूरत पड़ने पर तुरंत भर्ती","सिर्फ बेसिक इंटरव्यू","संरचित परीक्षण प्रक्रिया","योग्यता-आधारित SOP"]
+  },
+
+  // ── SYSTEMS (1) ──
+  {
+    q:   "Are business processes documented — or do they live in people's memory?",
+    qhi: "क्या बिज़नेस की प्रक्रियाएँ लिखित हैं — या सिर्फ लोगों की याददाश्त में?",
+    dim: "Systems",
+    opts:   ["Not documented at all","A few departments","Most departments","Full SOP culture"],
+    optshi: ["बिल्कुल दस्तावेज़ नहीं","कुछ विभागों में","अधिकतर विभागों में","पूरी SOP संस्कृति"]
+  },
+
+  // ── LEADERSHIP (1) ──
+  {
+    q:   "How much of your time do you spend on future planning?",
+    qhi: "आप भविष्य की योजना बनाने में कितना समय लगाते हैं?",
+    dim: "Leadership",
+    opts:   ["Less than 5%","5 – 10%","10 – 25%","25% or more"],
+    optshi: ["5% से कम","5 – 10%","10 – 25%","25% या अधिक"]
+  },
+
+  // ── PEOPLE & HR (2) ──
+  {
+    q:   "How does your company develop its team through training and mentoring?",
+    qhi: "आपकी कंपनी प्रशिक्षण और मार्गदर्शन के ज़रिए टीम को कैसे विकसित करती है?",
+    dim: "People & HR",
+    opts:   ["Rarely or never","Occasional, ad hoc","Quarterly programmes","Continuous learning system"],
+    optshi: ["शायद ही या कभी नहीं","कभी-कभी, बिना योजना के","तिमाही कार्यक्रम","निरंतर सीखने की प्रणाली"]
+  },
+
+  // ── FINANCE ──
+  {
+    q:   "Do you benchmark all costs to improve efficiency? How often do you track?",
+    qhi: "क्या आप दक्षता सुधारने के लिए सभी लागतों की तुलना करते हैं? कितनी बार?",
+    dim: "Finance",
+    opts:   ["No tracking at all","Monthly review","Department-level tracking","Real-time dashboard"],
+    optshi: ["कोई ट्रैकिंग नहीं","मासिक समीक्षा","विभाग-स्तरीय ट्रैकिंग","रियल-टाइम डैशबोर्ड"]
+  },
+
+  // ── TECHNOLOGY ──
+  {
+    q:   "How confidently is your team using your Software / ERP?",
+    qhi: "आपकी टीम अपने सॉफ्टवेयर / ERP का उपयोग कितने आत्मविश्वास से करती है?",
+    dim: "Technology",
+    opts:   ["No ERP in place","Basic usage only","Moderate integration","Fully integrated"],
+    optshi: ["कोई ERP नहीं","केवल बेसिक उपयोग","मध्यम एकीकरण","पूरी तरह एकीकृत"]
+  },
+
+  // ── EXECUTION (1) ──
+  {
+    q:   "How do you track business progress? What is your review meeting frequency?",
+    qhi: "आप बिज़नेस की प्रगति कैसे ट्रैक करते हैं? समीक्षा बैठक कितनी बार होती है?",
+    dim: "Execution",
+    opts:   ["Irregular or none","Quarterly","Monthly","Monthly with KPI dashboard"],
+    optshi: ["अनियमित या कोई नहीं","तिमाही","मासिक","मासिक KPI डैशबोर्ड के साथ"]
+  },
+
+  // ── CULTURE (1) ──
+  {
+    q:   "How does your leadership impact team energy and motivation?",
+    qhi: "आपका नेतृत्व टीम की ऊर्जा और प्रेरणा को कैसे प्रभावित करता है?",
+    dim: "Culture",
+    opts:   ["Team is confused","Neutral energy","Motivated sometimes","Highly aligned and energised"],
+    optshi: ["टीम भ्रमित है","तटस्थ ऊर्जा","कभी-कभी प्रेरित","बहुत संरेखित और ऊर्जावान"]
+  },
+
+  // ── STRATEGY (1) ──
+  {
+    q:   "How do you plan company and department targets? What is your goal-setting approach?",
+    qhi: "आप कंपनी और विभागीय लक्ष्य कैसे तय करते हैं? लक्ष्य निर्धारण का तरीका क्या है?",
+    dim: "Strategy",
+    opts:   ["No goals set","Owner decides alone","Team discussion","Data-driven with accountability"],
+    optshi: ["कोई लक्ष्य नहीं","मालिक अकेले तय करता है","टीम चर्चा","डेटा-आधारित जवाबदेही के साथ"]
+  },
+
+  // ── EXECUTION (2) ──
+  {
+    q:   "How do you know what happened in your business today? What is your daily reporting structure?",
+    qhi: "आप जानते हैं कि आज बिज़नेस में क्या हुआ? आपकी दैनिक रिपोर्टिंग संरचना क्या है?",
+    dim: "Execution",
+    opts:   ["No formal reports","WhatsApp updates","Structured daily report","Automated live dashboard"],
+    optshi: ["कोई औपचारिक रिपोर्ट नहीं","WhatsApp अपडेट","संरचित दैनिक रिपोर्ट","स्वचालित लाइव डैशबोर्ड"]
+  },
+
+  // ── STRUCTURE ──
+  {
+    q:   "Does everyone know who to contact for what, and who owns which goal? (Org structure clarity)",
+    qhi: "क्या सभी को पता है किससे क्या पूछना है और कौन किस लक्ष्य का ज़िम्मेदार है?",
+    dim: "Structure",
+    opts:   ["Authority is unclear","Semi-defined","Clearly defined","Documented and practised daily"],
+    optshi: ["अधिकार अस्पष्ट है","आंशिक रूप से परिभाषित","स्पष्ट रूप से परिभाषित","दस्तावेज़ीकृत और दैनिक अभ्यास"]
+  },
+
+  // ── SYSTEMS (2) ──
+  {
+    q:   "Does everyone know the best way to do their work? (SOP / Workflow maturity)",
+    qhi: "क्या सभी को अपना काम करने का सबसे अच्छा तरीका पता है? (SOP परिपक्वता)",
+    dim: "Systems",
+    opts:   ["No SOPs exist","Partial in some areas","Most areas covered","Fully standardised"],
+    optshi: ["कोई SOP नहीं","कुछ क्षेत्रों में आंशिक","अधिकतर क्षेत्र कवर","पूरी तरह मानकीकृत"]
+  },
+
+  // ── PEOPLE & HR (3) ──
+  {
+    q:   "Does everyone know what they are responsible for and how they'll be measured? (JD & KRA clarity)",
+    qhi: "क्या सभी को पता है वे किसके ज़िम्मेदार हैं और कैसे मापे जाएंगे? (JD & KRA)",
+    dim: "People & HR",
+    opts:   ["No clarity on roles","Basic job descriptions","JD plus KRAs defined","Performance KRAs with review"],
+    optshi: ["भूमिकाओं पर कोई स्पष्टता नहीं","बेसिक जॉब विवरण","JD और KRA परिभाषित","प्रदर्शन KRA समीक्षा सहित"]
+  },
+
+  // ── STRATEGY (2) ──
+  {
+    q:   "Do you know where your company will be in the next 3–5 years? (Vision clarity)",
+    qhi: "क्या आपको पता है कि आपकी कंपनी अगले 3–5 साल में कहाँ होगी? (दृष्टि स्पष्टता)",
+    dim: "Strategy",
+    opts:   ["No defined vision","Rough idea in my head","Written goals exist","Strong documented roadmap"],
+    optshi: ["कोई परिभाषित दृष्टि नहीं","दिमाग में अस्पष्ट विचार","लिखित लक्ष्य मौजूद हैं","मजबूत दस्तावेज़ीकृत रोडमैप"]
+  },
+
+  // ── LEADERSHIP (2) ──
+  {
+    q:   "Do you have a strong second line to manage the business when you are away? (Leadership depth)",
+    qhi: "जब आप नहीं होते तब बिज़नेस संभालने के लिए आपके पास मजबूत दूसरी पंक्ति है?",
+    dim: "Leadership",
+    opts:   ["Fully dependent on me","Average capability","Strong in some areas","Self-driven leaders across all functions"],
+    optshi: ["पूरी तरह मुझ पर निर्भर","औसत क्षमता","कुछ क्षेत्रों में मजबूत","सभी विभागों में स्वचालित नेता"]
+  },
+
+  // ── CULTURE (2) ──
+  {
+    q:   "Does your team know where the company is going and what their role is in that future? (Vision alignment)",
+    qhi: "क्या आपकी टीम जानती है कि कंपनी कहाँ जा रही है और उस भविष्य में उनकी भूमिका क्या है?",
+    dim: "Culture",
+    opts:   ["Vision not shared","Shared once informally","Annual alignment session","Quarterly culture reviews"],
+    optshi: ["दृष्टि साझा नहीं की","एक बार अनौपचारिक रूप से साझा की","वार्षिक संरेखण सत्र","तिमाही संस्कृति समीक्षा"]
+  },
+
+  // ── AUTOMODE ──
+  {
+    q:   "Can you take multiple vacations a year without worry? (Owner freedom)",
+    qhi: "क्या आप बिना चिंता के साल में कई बार छुट्टी पर जा सकते हैं? (मालिक की आज़ादी)",
+    dim: "Automode",
+    opts:   ["Stuck in daily operations","Occasional short breaks","2–3 vacations per year","Business runs in full Automode"],
+    optshi: ["रोज़मर्रा के काम में फँसे हैं","कभी-कभी छोटे ब्रेक","साल में 2–3 छुट्टियाँ","बिज़नेस पूरे Automode में चलता है"]
+  }
 ];
 
+// ═══════════════════════════════════════════════
+// SCORING BANDS — updated for /88
+// ═══════════════════════════════════════════════
 const BANDS = [
-  {min:0,  max:35, label:"Firefighting Business",            col:"#8B3A0F",bg:"#FDF0E8",bdr:"#E0A880",
+  {min:0,  max:40, label:"Firefighting Business",
+   col:"#8B3A0F",bg:"#FDF0E8",bdr:"#E0A880",
    headline:"Your business is running on you — and it knows it.",
    desc:"The business is highly dependent on the owner for most decisions, processes, and energy. Growth is happening but it is fragile. One absence, one key person leaving, or one difficult quarter can create a crisis. This is the most common stage for businesses between ₹5 Cr and ₹20 Cr in South Gujarat.",
    next:"A paid Shikhar Business Diagnostic will identify the 3 specific areas creating the most risk and show you the exact priority order to fix them."},
-  {min:36, max:52, label:"Growing but Chaotic",              col:"#9B6A0A",bg:"#FDF5E0",bdr:"#E0C070",
+  {min:41, max:58, label:"Growing but Chaotic",
+   col:"#9B6A0A",bg:"#FDF5E0",bdr:"#E0C070",
    headline:"You have momentum — but the foundation is not solid yet.",
    desc:"The business is growing and you have built some systems, but the growth is creating new chaos faster than you can structure it. The team is capable in patches but not consistently. You are still involved in too many decisions that should not require you.",
    next:"A paid Shikhar Business Diagnostic will show you exactly which systems to build first to convert this growth into sustainable, structured scale."},
-  {min:53, max:65, label:"Structured but Not Yet Auto-Mode", col:"#0E5454",bg:"#E6F3F3",bdr:"#80C0C0",
+  {min:59, max:74, label:"Structured but Not Yet Auto-Mode",
+   col:"#0E5454",bg:"#E6F3F3",bdr:"#80C0C0",
    headline:"Strong foundations — but the business still needs you too much.",
    desc:"You have built a solid business with real systems, a capable team, and a clear direction. But the business has not yet reached the point where it can grow without your active involvement. You are currently the ceiling of your own business.",
    next:"A paid Shikhar Business Diagnostic will identify the specific gaps keeping you from true Automode — and show you how close you actually are."},
-  {min:66, max:76, label:"Scalable Organisation",            col:"#1E5C1E",bg:"#E8F5E8",bdr:"#80C080",
+  {min:75, max:88, label:"Scalable Organisation",
+   col:"#1E5C1E",bg:"#E8F5E8",bdr:"#80C080",
    headline:"You have built something genuinely remarkable.",
    desc:"Your business has strong systems, a capable leadership team, clear strategy, and the ability to operate without you in daily decisions. You are in a rare position — most business owners at your revenue level have not achieved this.",
    next:"A paid Shikhar Business Diagnostic will show you the specific opportunities to scale further and build lasting personal wealth from what you have already built."}
 ];
 
-const DIMS = ["Strategy","Leadership","People & HR","Systems","Execution","Culture","Finance","Technology","Customer Relations","Structure","Automode"];
+const DIMS = ["Growth","Market Position","Cash Flow","Customer Relations","Operations","People & HR","Systems","Leadership","Execution","Culture","Finance","Technology","Structure","Automode"];
 
 // ═══════════════════════════════════════════════
 // STATE
@@ -350,10 +563,10 @@ let owner    = {};
 let currentQ = 0;
 
 // ═══════════════════════════════════════════════
-// GOOGLE SHEETS — sends data silently
+// GOOGLE SHEETS
 // ═══════════════════════════════════════════════
 function sendToSheet(payload) {
-  if (!SHEET_URL || SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') return;
+if (!SHEET_URL) return;
   try {
     fetch(SHEET_URL, {
       method:  'POST',
@@ -404,8 +617,8 @@ function getDimScores() {
 function startAssessment() {
   const name = document.getElementById('fname').value.trim();
   const wa   = document.getElementById('fwa').value.replace(/\D/g,'');
-  if(!name)           { alert('Please enter your name.'); return; }
-  if(wa.length !== 10){ alert('Please enter a valid 10-digit WhatsApp number.'); return; }
+  if(!name)           { alert('Please enter your name. / कृपया अपना नाम दर्ज करें।'); return; }
+  if(wa.length !== 10){ alert('Please enter a valid 10-digit WhatsApp number. / कृपया 10 अंकों का WhatsApp नंबर दर्ज करें।'); return; }
 
   owner = {
     name,
@@ -449,12 +662,16 @@ function buildQuestions() {
       <div class="q-card-top">
         <div class="q-meta">Q${i+1} <span class="q-dim">${q.dim}</span></div>
         <div class="q-text">${q.q}</div>
+        <div class="q-text-hi">${q.qhi}</div>
       </div>
       <div class="opts-wrap">
         ${q.opts.map((o,j)=>`
           <div class="opt" id="opt${i}_${j}" onclick="pick(${i},${j})">
             <div class="opt-badge">${['A','B','C','D'][j]}</div>
-            <div class="opt-label">${o}</div>
+            <div style="flex:1">
+              <div class="opt-label">${o}</div>
+              <div class="opt-label-hi">${q.optshi[j]}</div>
+            </div>
           </div>`).join('')}
       </div>
       <div class="q-foot">
@@ -508,39 +725,42 @@ function buildResult(){
 
   const total = answers.reduce((s,a)=>s+a,0);
   const band  = BANDS.find(b=>total>=b.min&&total<=b.max)||BANDS[0];
-  const pct   = Math.round((total/76)*100);
+  const pct   = Math.round((total/88)*100);
   const dims  = getDimScores();
   const str   = dims.filter(d=>d.avg>=3).sort((a,b)=>b.avg-a.avg).slice(0,3);
   const gaps  = dims.filter(d=>d.avg<2.5).sort((a,b)=>a.avg-b.avg).slice(0,3);
   const today = new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
   const rpt   = makeReport(total,band,dims,str,gaps,today);
 
-  // ── Fire completion to Google Sheets (includes report_text for PDF) ──
   sendToSheet({
-    event:           'ASSESSMENT_COMPLETED',
-    timestamp:       new Date().toISOString(),
-    name:            owner.name,
-    business:        owner.biz,
-    industry:        owner.indus,
-    turnover:        owner.rev,
-    whatsapp:        owner.wa,
-    score:           total+'/76',
-    result:          band.label,
-    completed:       'Yes',
-    strategy:        (dims.find(d=>d.dim==='Strategy')?.avg||0).toFixed(1),
-    leadership:      (dims.find(d=>d.dim==='Leadership')?.avg||0).toFixed(1),
-    people_hr:       (dims.find(d=>d.dim==='People & HR')?.avg||0).toFixed(1),
-    systems:         (dims.find(d=>d.dim==='Systems')?.avg||0).toFixed(1),
-    execution:       (dims.find(d=>d.dim==='Execution')?.avg||0).toFixed(1),
-    culture:         (dims.find(d=>d.dim==='Culture')?.avg||0).toFixed(1),
-    finance:         (dims.find(d=>d.dim==='Finance')?.avg||0).toFixed(1),
-    technology:      (dims.find(d=>d.dim==='Technology')?.avg||0).toFixed(1),
-    customer:        (dims.find(d=>d.dim==='Customer Relations')?.avg||0).toFixed(1),
-    structure:       (dims.find(d=>d.dim==='Structure')?.avg||0).toFixed(1),
-    automode:        (dims.find(d=>d.dim==='Automode')?.avg||0).toFixed(1),
-    top_strengths:   str.map(s=>s.dim).join(', '),
-    top_gaps:        gaps.map(g=>g.dim).join(', '),
-    report_text:     rpt   // ← sends full report text so Apps Script can generate PDF
+    event:            'ASSESSMENT_COMPLETED',
+    timestamp:        new Date().toISOString(),
+    name:             owner.name,
+    business:         owner.biz,
+    industry:         owner.indus,
+    turnover:         owner.rev,
+    whatsapp:         owner.wa,
+    score:            total+'/88',
+    result:           band.label,
+    completed:        'Yes',
+    growth:           (dims.find(d=>d.dim==='Growth')?.avg||0).toFixed(1),
+    market_position:  (dims.find(d=>d.dim==='Market Position')?.avg||0).toFixed(1),
+    cash_flow:        (dims.find(d=>d.dim==='Cash Flow')?.avg||0).toFixed(1),
+    strategy:         (dims.find(d=>d.dim==='Strategy')?.avg||0).toFixed(1),
+    leadership:       (dims.find(d=>d.dim==='Leadership')?.avg||0).toFixed(1),
+    people_hr:        (dims.find(d=>d.dim==='People & HR')?.avg||0).toFixed(1),
+    systems:          (dims.find(d=>d.dim==='Systems')?.avg||0).toFixed(1),
+    execution:        (dims.find(d=>d.dim==='Execution')?.avg||0).toFixed(1),
+    culture:          (dims.find(d=>d.dim==='Culture')?.avg||0).toFixed(1),
+    finance:          (dims.find(d=>d.dim==='Finance')?.avg||0).toFixed(1),
+    technology:       (dims.find(d=>d.dim==='Technology')?.avg||0).toFixed(1),
+    customer:         (dims.find(d=>d.dim==='Customer Relations')?.avg||0).toFixed(1),
+    operations:       (dims.find(d=>d.dim==='Operations')?.avg||0).toFixed(1),
+    structure:        (dims.find(d=>d.dim==='Structure')?.avg||0).toFixed(1),
+    automode:         (dims.find(d=>d.dim==='Automode')?.avg||0).toFixed(1),
+    top_strengths:    str.map(s=>s.dim).join(', '),
+    top_gaps:         gaps.map(g=>g.dim).join(', '),
+    report_text:      rpt
   });
 
   const area=document.getElementById('resultArea');
@@ -550,7 +770,7 @@ function buildResult(){
       <div class="score-who">${owner.name} &nbsp;·&nbsp; ${owner.biz}</div>
       <div class="score-row">
         <div class="score-big" id="animScore">0</div>
-        <div class="score-denom">/ 76</div>
+        <div class="score-denom">/ 88</div>
         <div class="score-verdict">
           <div class="score-verdict-kicker">Your Result</div>
           <div class="score-verdict-name">${band.label}</div>
@@ -558,8 +778,8 @@ function buildResult(){
       </div>
       <div class="gauge-track"><div class="gauge-fill" id="gaugeFill" style="width:0%"></div></div>
       <div class="gauge-labels">
-        <span>Firefighting (0–35)</span><span>Growing (36–52)</span>
-        <span>Structured (53–65)</span><span>Auto-Mode (66+)</span>
+        <span>Firefighting (0–40)</span><span>Growing (41–58)</span>
+        <span>Structured (59–74)</span><span>Auto-Mode (75+)</span>
       </div>
     </div>
 
@@ -619,7 +839,6 @@ function buildResult(){
   showScreen('result');
   updateProg();
 
-  // Animate score
   let n=0;
   const ticker=setInterval(()=>{
     n=Math.min(n+2,total);
@@ -646,7 +865,7 @@ function makeReport(total,band,dims,str,gaps,date){
 ━━━━━━━━━━━━━━━━━━━━━━━
 📊 *YOUR OVERALL SCORE*
 ━━━━━━━━━━━━━━━━━━━━━━━
-Score: *${total} / 76*
+Score: *${total} / 88*
 Result: *${band.label}*
 
 ${band.headline}
